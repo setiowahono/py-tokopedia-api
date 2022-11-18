@@ -4,11 +4,11 @@ import pandas as pd
 import datetime
 
 url = 'https://gql.tokopedia.com/graphql/SearchProductQueryV4'
-cari = 'iPhone 14 Pro'
+cari = 'iPhone 11 128'
 
 def get_params():
     params = []
-    for i in range(1, 5):
+    for i in range(1, 30):
         param = 'device=desktop&navsource=&ob=23&page={}&q={}&related=true&rows=60&safe_search=false&scheme=https&shipping=&source=search&srp_component_id=02.01.00.00&srp_page_id=&srp_page_title=&st=product&start={}&topads_bucket=true&unique_id=3a31b8de3343a19ce95f2544ccc83620&user_addressId=&user_cityId=176&user_districtId=2274&user_id=&user_lat=&user_long=&user_postCode=&user_warehouseId=12210375&variants='.format(
             i, cari, (i-1)*60)
         params.append(param)
@@ -51,6 +51,5 @@ if __name__ == '__main__':
 
 df = pd.DataFrame(data, columns=['Nama Toko', 'Lokasi', 'Nama Barang', 'Harga', 'Rating'])
 now = datetime.datetime.now()
-df.to_excel(f'tokopedia_api-{now.strftime("%Y%m%d%H%M%S")}.xlsx', index = False)
+df.to_excel(f'tokopedia_api-{now.strftime("%Y%m%d%H%M%S")}.xlsx', index=False)
 print('Done')
-
